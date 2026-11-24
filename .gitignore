@@ -1,0 +1,8 @@
+build/
+logs/
+tools/.venv/
+__pycache__/
+out/
+.vs/
+.vscode/
+CMakeUserPresets.json

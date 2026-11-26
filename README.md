@@ -7,12 +7,6 @@ Two mass models are available from the start menu:
 - **Centralized (Kepler):** each galaxy is a single central mass orbited by massless test stars. It is fast and good for intuition, but the star-loss numbers are artifacts of the model, because there is no halo and stars have no gravity.
 - **Distributed (Barnes-Hut N-body):** each galaxy is a central black hole, a self-gravitating disk and a live dark-matter halo. Every particle pulls on every other through a quadtree with O(N log N) cost.
 
-![Barnes-Hut quadtree](docs/diagrams/1_tree_structure.png)
-
-## Built with AI assistance
-
-The code was written with Claude Code from my specifications. I made the design decisions, reviewed the code and the results, and drove the debugging (for example the disk clumping, the energy-drift checks and the breathing at start-up). I can explain how each part works. I plan to hand-write my own Barnes-Hut tree and integrator later, using this project's scaffolding and tests.
-
 ## Physics
 
 | Piece | Choice |
@@ -79,7 +73,6 @@ The main options are `--impact-frac f` / `--impact ly`, `--vel`, `--gyr`, `--one
 python -m venv tools/.venv
 tools/.venv/Scripts/pip install -r tools/requirements.txt    # bin/ on macOS/Linux
 tools/.venv/Scripts/python tools/plot_log.py logs/run.csv
-tools/.venv/Scripts/python tools/plot_quadtree.py            # diagrams in docs/diagrams/
 tools/.venv/Scripts/python tools/plot_halo_sweep.py
 ```
 
@@ -100,3 +93,7 @@ docs/         diagrams and notes
 - The halo is a 2D Gaussian velocity model, not an exact equilibrium, which is why pre-relaxation is needed. The relaxed disk ends up puffier.
 - Start-up takes about a minute per 20k-particle galaxy, and Reset redoes the relaxation.
 - Tree energy error grows roughly as θ², and the timestep ratchet only shrinks.
+
+## Built with AI assistance
+
+The code was written with Claude Code from my specifications. I made the design decisions, reviewed the code and the results, and drove the debugging (for example the disk clumping, the energy-drift checks and the breathing at start-up). I can explain how each part works. I plan to hand-write my own Barnes-Hut tree and integrator later, using this project's scaffolding and tests.
